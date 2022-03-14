@@ -1,0 +1,19 @@
+<div class="side-menu-container">
+
+  <app-side-menu-item
+    class="side-menu-item"
+    [typeName]="'All'"
+    [typeColor]="'#000'"
+  >
+  </app-side-menu-item>
+  <app-side-menu-item
+    class="side-menu-item"
+    *ngFor="let type of types; let i = index"
+    id="'menu-item' + i"
+    [typeName]="type.name"
+    [typeColor]="type.color"
+    (buttonClick)="onClick($event)"
+  >
+  </app-side-menu-item>
+
+</div>

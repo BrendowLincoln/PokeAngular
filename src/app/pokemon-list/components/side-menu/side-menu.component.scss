@@ -1,0 +1,28 @@
+.side-menu-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 150px;
+  background-color: #D0D3D0;
+  gap: 1%;
+  overflow-y: scroll;
+
+  .side-menu-item {
+    margin: auto;
+
+    &:first-child {
+      margin-top: 5%;
+    }
+
+    &:last-child {
+      margin-bottom: 5%;
+    }
+  }
+
+  
+
+}
+
+.side-menu-container::-webkit-scrollbar {
+  display: none;
+}

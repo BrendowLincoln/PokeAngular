@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  background-color: #F6F8FC;
+
+  .list-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    min-width: 150px;
+    padding-top: 41px;
+
+    .filter-input-container {
+      width: 85%;
+      .filter-input {
+        width: 100%;
+
+
+      }
+    }
+
+
+
+    ::ng-deep {
+      .mat-form-field-appearance-fill .mat-form-field-fill {
+      }
+      mat-form-field {
+         .mat-hint, input, ::placeholder, .mat-form-field-label {
+            color: #9EA5B0;
+         }
+      }
+   }
+
+  }
+
+}

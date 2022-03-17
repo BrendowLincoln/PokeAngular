@@ -1,11 +1,4 @@
-export class Type {
-  public name: string;
-  public color: string;
-
-  constructor(name: string = "", color: string ="") {
-    this.name = name;
-    this.color = color;
-  } 
-
-  
+export interface Type {
+  name: string;
+  color: string; 
 }

@@ -14,6 +14,7 @@
     .filter-input-container {
       width: 85%;
 
+      //Change styles of class roots from mat-form-field and mat-input
       ::ng-deep {
         .mat-form-field-appearance-fill .mat-form-field-underline {
           display: none !important;

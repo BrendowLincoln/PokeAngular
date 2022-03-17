@@ -13,24 +13,37 @@
 
     .filter-input-container {
       width: 85%;
+
+      ::ng-deep {
+        .mat-form-field-appearance-fill .mat-form-field-underline {
+          display: none !important;
+        }
+
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+          padding: 5px 10px;
+          border-radius: 12px;
+          background-color: #fff;
+          box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+          align-items: center;
+        }
+        
+     }
       .filter-input {
         width: 100%;
 
 
+        button {
+          background-color: #FF5350;
+          color: #fff;
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+          border-radius: 7px !important;
+        }
       }
     }
 
 
 
-    ::ng-deep {
-      .mat-form-field-appearance-fill .mat-form-field-fill {
-      }
-      mat-form-field {
-         .mat-hint, input, ::placeholder, .mat-form-field-label {
-            color: #9EA5B0;
-         }
-      }
-   }
+    
 
   }
 

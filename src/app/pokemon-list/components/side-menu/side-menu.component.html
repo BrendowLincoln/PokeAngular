@@ -2,17 +2,21 @@
 
   <app-side-menu-item
     class="side-menu-item"
+    [idButton]="'All'"
     [typeName]="'All'"
-    [typeColor]="'#000'"
+    [color]="isTypeSelected('All') ? '#fff' : '#000'"
+    [backgroundColor]="isTypeSelected('All') ? '#000' : '#fff'"
+    (buttonTypeClick)="onClick($event)"
   >
   </app-side-menu-item>
   <app-side-menu-item
     class="side-menu-item"
-    *ngFor="let type of types; let i = index"
-    id="'menu-item' + i"
+    *ngFor="let type of types;"
+    [idButton]="type.name"
     [typeName]="type.name"
-    [typeColor]="type.color"
-    (buttonClick)="onClick($event)"
+    [color]="isTypeSelected(type.name) ? '#fff' : type.color"
+    [backgroundColor]="isTypeSelected(type.name) ? type.color : '#fff'"
+    (buttonTypeClick)="onClick($event)"
   >
   </app-side-menu-item>
 

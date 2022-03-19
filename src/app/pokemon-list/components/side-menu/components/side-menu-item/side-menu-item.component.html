@@ -1,7 +1,9 @@
 <button 
+  #button
   mat-flat-button
-  [ngStyle]="{'color': typeColor}"
-  class="side-menu-item"
-  (click)="onClick($event)">
+  [id]="idButton"
+  [ngStyle]="{'color': typeColor, 'backgroundColor': typeBackgroundColor}"
+  (click)="onClick(button)"
+  class="side-menu-item">
   {{typeName}}
 </button>

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Type } from "../models/type.model";
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, mapTo, tap } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon.model';
+import { PokemonList } from '../models/pokemon-list.model';
 
 
 
@@ -24,20 +25,28 @@ export class PokemonApi {
     );
   }
 
-  public getPokemonList = (): Observable<any> => {
-    // return this.http.get(`${this.path}pokemon/`).pipe(
-    //   map(response => response.results.map((pokemon => {
-    //     this.apiGetPokemon(pokemon.url)
-    //   })))
-    // ).subscribe(console.log);
-
+  public getPokemonList = (): Observable<Array<Pokemon>> => {
     return this.http.get(`${this.path}pokemon/`).pipe(
-      
+      map((result: any) => result.results),
+      map((result: any) => result.map((x: any) => this.apiGetPokemon(x.url)))
     );
   }
 
-  public apiGetPokemon( url: string ):Observable<any>{
-    return this.http.get<any>(url);
+
+  public apiGetPokemon( url: string ): Pokemon {
+    var pokemon = {} as Pokemon;
+
+    this.http.get<any>(url).subscribe(pokemonResult => {
+        pokemon.id = pokemonResult.id,
+        pokemon.name = pokemonResult.name,
+        pokemon.order = pokemonResult.order,
+        pokemon.experience = pokemonResult.base_experience,
+        pokemon.image = pokemonResult.sprites.front_default,
+        pokemon.height = pokemonResult.height,
+        pokemon.weight = pokemonResult.weight
+    });
+
+    return pokemon as Pokemon;
   }
 
   

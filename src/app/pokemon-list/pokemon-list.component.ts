@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonApi } from '../shared/api/pokemon.api';
+import { Pokemon } from '../shared/models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -8,13 +9,14 @@ import { PokemonApi } from '../shared/api/pokemon.api';
 })
 export class PokemonListComponent implements OnInit {
 
+  public pokemonList: Array<Pokemon> = [];
+
   constructor(private api: PokemonApi) { }
 
   ngOnInit(): void {
-    this.api.getPokemonList().subscribe((result) => {
-        console.log(result.results);
-      }
-    );
+    this.api.getPokemonList().subscribe((x: any) => {
+      console.log(x);
+    })
   }
 
 }

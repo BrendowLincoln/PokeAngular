@@ -1,7 +1,25 @@
 .card-body {
-
+  display: flex;
+  justify-content: flex-end;
   width: 170px;
   height: 100px;
   border-radius: 22px;
   background-color: #efef43;
+
+  .images-container {
+
+    
+    .pokeball-image {
+      width: 90px;
+      height: 90px;
+    }
+  
+    .pokemon-image {
+      position: absolute;
+      z-index: 1;
+
+      
+    }
+  }
+  
 }

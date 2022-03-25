@@ -1,5 +1,9 @@
 <mat-card class="card-body">
-  <span>{{ name }}</span>
+
+  <div class="info-container">
+    <span class="pokemon-name">{{ pokemon!.name }}</span>
+
+  </div>
 
   <div class="images-container">
     <img 
@@ -8,7 +12,7 @@
     [alt]="'Pokebola preta para cada atras de cada card da lista de pokemons'">
 
     <img
-    class="pookemon-image"
-    [src]="image" alt="">
+    class="pokemon-image"
+    [src]="pokemon!.image" alt="">
   </div>
 </mat-card>

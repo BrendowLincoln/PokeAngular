@@ -4,8 +4,6 @@ import { Type } from "../models/type.model";
 import { Observable } from 'rxjs';
 import { map, mapTo, tap } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon.model';
-import { PokemonList } from '../models/pokemon-list.model';
-
 
 
 @Injectable({
@@ -14,7 +12,9 @@ import { PokemonList } from '../models/pokemon-list.model';
 export class PokemonApi {
 
   private path = "https://pokeapi.co/api/v2/";
-  private typeJsonPath = 'assets/data/pokemon-types-data.json';
+  private typeJsonPath = '../../../assets/data/pokemon-types-data.json';
+  private types: Array<Type> = [];
+  
 
   constructor(private http: HttpClient) { }
 
@@ -37,16 +37,27 @@ export class PokemonApi {
     var pokemon = {} as Pokemon;
 
     this.http.get<any>(url).subscribe(pokemonResult => {
-        pokemon.id = pokemonResult.id,
-        pokemon.name = pokemonResult.name,
-        pokemon.order = pokemonResult.order,
-        pokemon.experience = pokemonResult.base_experience,
-        pokemon.image = pokemonResult.sprites.front_default,
-        pokemon.height = pokemonResult.height,
-        pokemon.weight = pokemonResult.weight
+        pokemon.id = pokemonResult.id;
+        pokemon.name = pokemonResult.name;
+        pokemon.order = pokemonResult.order;
+        pokemon.experience = pokemonResult.base_experience;
+        pokemon.image = pokemonResult.sprites.front_default;
+        pokemon.height = pokemonResult.height;
+        pokemon.weight = pokemonResult.weight;
     });
 
     return pokemon as Pokemon;
+  }
+
+  public getType = (type: string = ""): Type => {
+    
+    if(this.types.length === 0) {
+      this.http.get<Array<Type>>('../../../assets/data/pokemon-types-data.json').subscribe(x => {
+        
+      });
+    }
+
+    return this.types.filter(t => t.name === type)[0] as Type;
   }
 
   

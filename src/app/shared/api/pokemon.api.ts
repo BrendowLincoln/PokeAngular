@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Type } from "../models/type.model";
 import { Observable } from 'rxjs';
-import { map, mapTo, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon.model';
 
 
@@ -17,6 +17,10 @@ export class PokemonApi {
   
 
   constructor(private http: HttpClient) { }
+  
+  ngOnInit(): void {
+    
+  }
 
   //Get
   public getPokemonTypes = (): Observable<Array<Type>> => {
@@ -44,20 +48,28 @@ export class PokemonApi {
         pokemon.image = pokemonResult.sprites.front_default;
         pokemon.height = pokemonResult.height;
         pokemon.weight = pokemonResult.weight;
+
+        pokemonResult.types.forEach((x: any) => {
+          const type = x.type.name;
+          this.getType(type);
+        });
     });
 
     return pokemon as Pokemon;
   }
 
   public getType = (type: string = ""): Type => {
-    
+
     if(this.types.length === 0) {
       this.http.get<Array<Type>>('../../../assets/data/pokemon-types-data.json').subscribe(x => {
-        
+        this.types = x;
       });
     }
 
-    return this.types.filter(t => t.name === type)[0] as Type;
+    console.log(this.types)
+       
+    const typeResult = this.types.filter(t => t.name === type)[0] as Type;
+    return typeResult;
   }
 
   

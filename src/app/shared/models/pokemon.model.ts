@@ -1,12 +1,12 @@
 import { Type } from "./type.model";
 
-export interface Pokemon {
-  id: number;
-  name: string;
-  order: number;
-  experience: number;
-  types: Array<Type>;
-  image: string;
-  height: number;
-  weight: number;
+export class Pokemon {
+  id: number | undefined;
+  name: string | undefined;
+  order: number | undefined;
+  experience: number | undefined;
+  types: Array<Type> = [];
+  image: string | undefined;
+  height: number | undefined;
+  weight: number | undefined;
 }

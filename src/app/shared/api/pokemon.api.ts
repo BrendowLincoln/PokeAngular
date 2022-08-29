@@ -4,6 +4,7 @@ import { Type } from "../models/type.model";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon.model';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Injectable({
@@ -38,7 +39,7 @@ export class PokemonApi {
 
 
   public apiGetPokemon( url: string ): Pokemon {
-    var pokemon = {} as Pokemon;
+    var pokemon = new Pokemon;
 
     this.http.get<any>(url).subscribe(pokemonResult => {
         pokemon.id = pokemonResult.id;
@@ -51,7 +52,7 @@ export class PokemonApi {
 
         pokemonResult.types.forEach((x: any) => {
           const type = x.type.name;
-          this.getType(type);
+          pokemon.types.push(this.getType(type));
         });
     });
 
@@ -60,16 +61,23 @@ export class PokemonApi {
 
   public getType = (type: string = ""): Type => {
 
+    let typeResult = {} as Type;
+
     if(this.types.length === 0) {
       this.http.get<Array<Type>>('../../../assets/data/pokemon-types-data.json').subscribe(x => {
         this.types = x;
+
+        typeResult = this.types.find(x => x.name === type)!;
+        
+        console.log(typeResult);
+
+        return typeResult;
       });
+
     }
 
-    console.log(this.types)
-       
-    const typeResult = this.types.filter(t => t.name === type)[0] as Type;
     return typeResult;
+
   }
 
   

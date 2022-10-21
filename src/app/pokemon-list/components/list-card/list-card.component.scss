@@ -1,7 +1,7 @@
 .card-body {
   display: flex;
   justify-content: flex-end;
-  width: 170px;
+  width: 190px;
   height: 100px;
   border-radius: 22px;
   background-color: #efef43;
@@ -19,6 +19,14 @@
       text-transform: capitalize;
       font-weight: bold;
       color: #433434;
+    }
+
+    .pokemon-type-label { 
+      margin: 15px 0 0 0;
+      width: 90px;
+      background-color: #ffffff;
+      justify-content: center;
+      font-weight: bold;
     }
   }
 

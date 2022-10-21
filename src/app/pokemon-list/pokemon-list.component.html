@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (scroll)="onScrollRiseLimit($event)">
   <app-side-menu class="side-menu"></app-side-menu>
   <div class="list-container">
     <div class="filter-input-container">
@@ -8,17 +8,27 @@
       appearance="fill">
         <input matInput placeholder="Find your pokemon...">
         <button matSuffix mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-          <mat-icon>catching_pokemon</mat-icon>
+          <mat-icon>search</mat-icon>
         </button>
       </mat-form-field>
     </div>
-    <div class="grid-list-items">
-      <app-list-card
-      *ngFor="let pokemon of pokemonList"
-      [pokemon]="pokemon"
-      >
+    <mat-progress-spinner
+      *ngIf="isLoading"
+      color="warn"
+      class="progess-spinner"
+      mode="indeterminate"
+    >
 
-      </app-list-card>
+    </mat-progress-spinner>
+    <div #gridList class="grid-list-items">
+      
+      <ng-container *ngIf="!isLoading">
+        <app-list-card
+          *ngFor="let pokemon of pokemonList"
+          [pokemon]="pokemon"
+        >
+        </app-list-card>
+      </ng-container>
     </div>
   </div>
 </div>

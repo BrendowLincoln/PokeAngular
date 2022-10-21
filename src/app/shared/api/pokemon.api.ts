@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Type } from "../models/type.model";
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Pokemon } from '../models/pokemon.model';
-
+import * as typesJson from '../../../assets/data/pokemon-types-data.json';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +30,24 @@ export class PokemonApi {
     );
   }
 
-  public getPokemonList = (): Observable<Array<Pokemon>> => {
-    return this.http.get(`${this.path}pokemon/`).pipe(
+  public getPokemons = (page: number): Observable<Array<Pokemon>> => {
+
+    let params = {
+      offset: page ?? 0 ,
+      limit: 20
+    };
+
+    return this.http.get(`${this.path}pokemon/`, {params: params} ).pipe(
       map((result: any) => result.results),
-      map((result: any) => result.map((x: any) => this.apiGetPokemon(x.url)))
+      map((result: any) => result.map((x: any) => this.getPokemonByUrl(x.url)))
     );
   }
 
 
-  public apiGetPokemon( url: string ): Pokemon {
+  public getPokemonByUrl( url: string ): Pokemon {
     var pokemon = {} as Pokemon;
 
-    this.http.get<any>(url).subscribe(pokemonResult => {
+    this.http.get<any>(url, ).subscribe(pokemonResult => {
         pokemon.id = pokemonResult.id;
         pokemon.name = pokemonResult.name;
         pokemon.order = pokemonResult.order;
@@ -48,27 +55,32 @@ export class PokemonApi {
         pokemon.image = pokemonResult.sprites.front_default;
         pokemon.height = pokemonResult.height;
         pokemon.weight = pokemonResult.weight;
+        pokemon.types = [];
 
         pokemonResult.types.forEach((x: any) => {
-          const type = x.type.name;
-          this.getType(type);
+
+          const type = this.getType(x.type.name);
+          pokemon.types.push(type);
         });
+
+        return pokemon as Pokemon;
     });
 
-    return pokemon as Pokemon;
+    return pokemon;
   }
 
   public getType = (type: string = ""): Type => {
-
     if(this.types.length === 0) {
-      this.http.get<Array<Type>>('../../../assets/data/pokemon-types-data.json').subscribe(x => {
-        this.types = x;
-      });
-    }
+      var typesJsonString = JSON.stringify(typesJson);
+      var typesJsonParsed = JSON.parse(typesJsonString);
 
-    console.log(this.types)
-       
-    const typeResult = this.types.filter(t => t.name === type)[0] as Type;
+
+      for(let i = 0; i < typesJsonParsed.length; i++) {
+        this.types.push(typesJsonParsed[i] as Type);
+      }
+    }
+           
+    const typeResult = this.types.filter((t: Type) => t.name.toLowerCase() === type)[0] as Type;
     return typeResult;
   }
 

@@ -1,7 +1,19 @@
-<mat-card class="card-body">
+<mat-card class="card-body" [style]="{'background-color': this.pokemon.types !== undefined ? this.pokemon.types[0].color : '#cecece' }">
 
   <div class="info-container">
     <span class="pokemon-name">{{ pokemon!.name }}</span>
+    <div>
+      <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+        <mat-chip 
+          *ngFor="let type of pokemon?.types"
+          class="pokemon-type-label" 
+          [selectable]="false"
+          [ngStyle]="{'color': type.color ? type.color : '#cecece'}"
+        >
+          {{type.name.toUpperCase()}}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
 
   </div>
 

@@ -1,10 +1,10 @@
 .card-body {
   display: flex;
   justify-content: flex-end;
-  width: 190px;
-  height: 100px;
+  width: 200px;
+  height: 120px;
   border-radius: 22px;
-  background-color: #efef43;
+  background-color: #cecece;
 
   .info-container {
     
@@ -18,11 +18,11 @@
       font-size: 16px;
       text-transform: capitalize;
       font-weight: bold;
-      color: #433434;
+      color: #424242;
     }
 
     .pokemon-type-label { 
-      margin: 15px 0 0 0;
+      margin: 10px 0 0 0;
       width: 90px;
       background-color: #ffffff;
       justify-content: center;
@@ -38,6 +38,13 @@
       height: 90px;
     }
   
+    .pokemon-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+    }
+
     .pokemon-image {
       position: absolute;
       top: 0;

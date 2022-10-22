@@ -26,4 +26,12 @@ public pokemonMainColor: string = "#cecece";
 
   }
 
+  public propertyValue(value: any, ifTru: any, ifFalse:any): string {
+    return value !== undefined ? ifTru : ifFalse;
+  }
+
+  public hasValue(pokemon: Pokemon): boolean {
+    return pokemon !== undefined || pokemon !== null; 
+  }
+
 }

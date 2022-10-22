@@ -34,7 +34,7 @@ export class PokemonApi {
 
     let params = {
       offset: page ?? 0 ,
-      limit: 20
+      limit: 40
     };
 
     return this.http.get(`${this.path}pokemon/`, {params: params} ).pipe(

@@ -36,13 +36,13 @@ export class PokemonListComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private getPokemons(): void {
+  private getPokemons(): void {3
     this.api.getPokemons(this.currentPage).subscribe((x: any) => {
       x.forEach((pokemon: any) => {
         this.pokemonList.push(pokemon);
       })
       this.isLoading = false;
-      this.currentPage += 20;
+      this.currentPage += 40;
     })
   } 
   

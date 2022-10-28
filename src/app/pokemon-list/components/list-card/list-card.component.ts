@@ -26,6 +26,11 @@ public pokemonMainColor: string = "#cecece";
 
   }
 
+
+  public selectPokemon(): void {
+    console.log('Teste de click');
+  }
+
   public propertyValue(value: any, ifTru: any, ifFalse:any): string {
     return value !== undefined ? ifTru : ifFalse;
   }

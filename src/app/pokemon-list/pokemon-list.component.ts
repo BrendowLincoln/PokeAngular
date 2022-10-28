@@ -30,9 +30,9 @@ export class PokemonListComponent implements OnInit, AfterViewChecked {
   }
 
   public onScrollRiseLimit(event: any): void {
-  
+    
     if (((event.target.offsetHeight + event.target.scrollTop) + 1) >= event.target.scrollHeight) {
-      this.getPokemons();
+      this.getPokemons(); 
     }
   }
 

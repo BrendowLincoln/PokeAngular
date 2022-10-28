@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { PokemonDetailsComponent } from './pokemon-list/components/pokemon-details/pokemon-details.component';
 import { SideMenuComponent } from './pokemon-list/components/side-menu/side-menu.component';
 import { SideMenuItemComponent } from './pokemon-list/components/side-menu/components/side-menu-item/side-menu-item.component';
 import { ListCardComponent } from './pokemon-list/components/list-card/list-card.component';

@@ -18,17 +18,14 @@
       class="progess-spinner"
       mode="indeterminate"
     >
-
     </mat-progress-spinner>
-    <div #gridList class="grid-list-items">
-      
-      <ng-container *ngIf="!isLoading">
-        <app-list-card
+
+    <div *ngIf="!isLoading" #gridList class="grid-list-items">
+      <app-list-card
           *ngFor="let pokemon of pokemonList"
           [pokemon]="pokemon"
         >
         </app-list-card>
-      </ng-container>
     </div>
   </div>
 </div>

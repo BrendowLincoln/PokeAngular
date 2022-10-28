@@ -3,6 +3,7 @@
   flex-direction: row;
   background-color: #F6F8FC;
   overflow-x: hidden;
+  overflow-y: scroll;
   justify-content: flex-end;
 
   .side-menu {
@@ -40,6 +41,7 @@
         }
         
      }
+
       .filter-input {
         width: 100%;
 
@@ -52,6 +54,10 @@
         }
       }
     }
+
+    .progess-spinner {
+      margin: auto;
+   }
 
     .grid-list-items {
       display: flex;
